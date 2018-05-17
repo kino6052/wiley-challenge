@@ -1,19 +1,19 @@
 import * as _ from "lodash";
-import TodoItemModel from "./todo-item-model";
+import TodoItemController from "../Controller/todo-item-controller";
 
 export default class TodoListModel {
-  todoItems: Array<TodoItemModel> = [];
-  constructor(taskList: Array<TodoItemModel>){
+  todoItems: Array<TodoItemController> = [];
+  constructor(taskList: Array<TodoItemController>){
     this.todoItems = taskList;
   }
-  addTask(todoTitle: string): TodoItemModel {
-    let newTodoItem = new TodoItemModel(todoTitle);
+  addTask(todoTitle: string): TodoItemController {
+    let newTodoItem: TodoItemController = new TodoItemController(todoTitle);
     this.todoItems.push(newTodoItem);
     return newTodoItem;
   }
   removeTaskById(taskId: string): void {
     this.todoItems = _.filter(this.todoItems, (todoItem) => {
-      return todoItem.id !== taskId;
+      return todoItem.getItemId() !== taskId;
     });
   }
 }
