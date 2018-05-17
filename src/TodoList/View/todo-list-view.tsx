@@ -89,7 +89,6 @@ export class TodoListView extends React.Component<IMainProps, IMainState> {
                 {
                   this.state.controller.todoListModel.todoItems.map(
                     todoItemController => {
-                      console.log("here");
                       return <ul>
                         {todoItemController.getCompleted() ? <b>Completed!</b> : <b></b>}
                         {

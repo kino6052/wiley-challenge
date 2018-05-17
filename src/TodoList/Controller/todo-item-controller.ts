@@ -1,7 +1,7 @@
 import TodoItemModel from "../Model/todo-item-model";
 
 export default class TodoItemController {
-  todoItemModel: TodoItemModel = new TodoItemModel("");
+  todoItemModel: TodoItemModel = new TodoItemModel("", false);
   constructor(itemTitle: string){
     this.todoItemModel.title = itemTitle;
   }
