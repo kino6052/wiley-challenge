@@ -8,12 +8,12 @@ export default class TodoListModel {
   }
   addTask(todoTitle: string): TodoItemController {
     let newTodoItem: TodoItemController = new TodoItemController(todoTitle);
-    this.todoItems.push(newTodoItem);
+    this.todoItems.unshift(newTodoItem);
     return newTodoItem;
   }
   removeTaskById(taskId: string): void {
     this.todoItems = _.filter(this.todoItems, (todoItem) => {
-      return todoItem.getItemId() !== taskId;
+      return todoItem.getTodoItemId() !== taskId;
     });
   }
 }

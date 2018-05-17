@@ -1,4 +1,4 @@
-"use strict";
+
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -9,20 +9,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var todo_list_model_1 = __importDefault(require("../src/TodoList/Model/todo-list-model"));
 var todo_list_controller_1 = __importDefault(require("../src/TodoList/Controller/todo-list-controller"));
-var todo_list_view_1 = __importDefault(require("../src/TodoList/View/todo-list-view"));
 var Enzyme = __importStar(require("enzyme"));
-var react_1 = __importDefault(require("react"));
 test("Render application", function () {
     var todoListController = new todo_list_controller_1.default();
     todoListController.addTask("Task001");
     todoListController.addTask("Task002");
     todoListController.addTask("Task003");
-    var wrapper = Enzyme.mount(react_1.default.createElement(todo_list_view_1.default, { "controller": _this }));
-    console.log(wrapper);
+    var wrapper = Enzyme.mount({ controller: todoListController } /  > );
 });
 test("Add and Remove Tasks", function () {
     var todoListModel = new todo_list_model_1.default([]);

@@ -1,4 +1,4 @@
-onst path = require('path');
+const path = require('path');
 
 module.exports = {
   entry: './src/index.ts',
@@ -7,7 +7,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: [/node_modules/, /tests/],
       }
     ]
   },
