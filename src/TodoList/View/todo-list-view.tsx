@@ -81,28 +81,35 @@ export class TodoListView extends React.Component<IMainProps, IMainState> {
 
     render () {
         return (
-            <div>
-                <div>
-                    <input type="text" value={this.state.title} onChange={this.changeName}/>
-                    <button onClick={this.addItem}>Add Task</button>
+            <div className={"Container"}>
+                <h1> Todo </h1>
+                <div className={"TaskInputContainer"}>
+                    <input className={"TitleInput"} type="text" value={this.state.title} onChange={this.changeName}/>
                 </div>
+                <div className={"AddTaskButton"} onClick={this.addItem}>Add Task</div>
                 {
                   this.state.controller.todoListModel.todoItems.map(
                     todoItemController => {
-                      return <ul>
-                        {todoItemController.getCompleted() ? <b>Completed!</b> : <b></b>}
+                      return <ul className={"ItemUL"}>
                         {
                           todoItemController.getBeingEdited() ?
-                          <div>
+                          <div className={"ItemContainer"}>
                             <input type="text" value={this.state.editedValue} onChange={this.editName}/>
                             <button onClick={this.saveChange(todoItemController)}>Save</button>
                             <button onClick={this.cancelChange(todoItemController)}>Cancel</button>
                           </div>
                           :
-                          <div>
-                            <p onClick={this.toggleCompleted(todoItemController)}>{todoItemController.getTodoItemTitle()}</p>
-                            <span onClick={this.removeItem(todoItemController)}>remove</span>
-                            <span onClick={this.toggleBeingEdited(todoItemController)}>edit</span>
+                          <div className={"ItemContainer"}>
+                            <input className={"Checkbox"} type="checkbox" onClick={this.toggleCompleted(todoItemController)}/>
+                            <p
+                              className={todoItemController.getCompleted() ? "TitleCompleted" : "TitleNormal"}
+                            >
+                              {todoItemController.getTodoItemTitle()}
+                            </p>
+                            <p>
+                              <span className={"ItemButton"} onClick={this.removeItem(todoItemController)}>remove</span>
+                              <span className={"ItemButton"} onClick={this.toggleBeingEdited(todoItemController)}>edit</span>
+                            </p>
                           </div>
                         }
                       </ul>
