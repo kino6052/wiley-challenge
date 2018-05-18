@@ -9,11 +9,16 @@ export default class TodoListModel {
   addTask(todoTitle: string): TodoItemController {
     let newTodoItem: TodoItemController = new TodoItemController(todoTitle);
     this.todoItems.unshift(newTodoItem);
+    newTodoItem.todoItemModel
+    this.todoItems = _.sortBy(this.todoItems, "todoItemModel.title").reverse();
     return newTodoItem;
   }
   removeTaskById(taskId: string): void {
     this.todoItems = _.filter(this.todoItems, (todoItem) => {
       return todoItem.getTodoItemId() !== taskId;
     });
+  }
+  sortInReverseOrder(){
+    this.todoItems.map
   }
 }

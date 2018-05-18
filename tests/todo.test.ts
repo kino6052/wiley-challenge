@@ -20,3 +20,20 @@ test("Add and Remove Tasks", () => {
   todoListModel.removeTaskById(task001.getTodoItemId());
   expect(todoListModel.todoItems.length).toEqual(2);
 });
+
+test("Sort in Reverse Alphabetical/Numberical Order", () => {
+  let todoListModel: TodoListModel = new TodoListModel([]);
+  let task001: TodoItemController = todoListModel.addTask("a");
+  expect(todoListModel.todoItems.length).toEqual(1);
+  let task002: TodoItemController = todoListModel.addTask("b");
+  expect(todoListModel.todoItems.length).toEqual(2);
+  let task003: TodoItemController = todoListModel.addTask("c");
+  expect(todoListModel.todoItems.length).toEqual(3);
+  let task004: TodoItemController = todoListModel.addTask("1");
+  /*
+  *   make sure ids are unique
+  */
+  expect(todoListModel.todoItems[0].getTodoItemTitle()).toEqual("c");
+  expect(todoListModel.todoItems[1].getTodoItemTitle()).toEqual("b");
+  expect(todoListModel.todoItems[2].getTodoItemTitle()).toEqual("a");
+});

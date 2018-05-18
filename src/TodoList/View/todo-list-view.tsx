@@ -47,6 +47,7 @@ export class TodoListView extends React.Component<IMainProps, IMainState> {
       return () => {
         todoItemController.setTodoItemTitle(this.state.editedValue);
         todoItemController.toggleBeingEdited();
+        this.state.controller.saveTasks();
         this.setState({...this.state});
       }
     }
@@ -61,6 +62,7 @@ export class TodoListView extends React.Component<IMainProps, IMainState> {
     toggleCompleted(todoItemController: TodoItemController){
       return () => {
         todoItemController.toggleCompleted();
+        this.state.controller.saveTasks();
         this.setState({...this.state});
       }
     }
@@ -100,7 +102,7 @@ export class TodoListView extends React.Component<IMainProps, IMainState> {
                           </div>
                           :
                           <div className={"ItemContainer"}>
-                            <input className={"Checkbox"} type="checkbox" onClick={this.toggleCompleted(todoItemController)}/>
+                            <input className={"Checkbox"} type="checkbox" checked={todoItemController.getCompleted() ? true : false} onClick={this.toggleCompleted(todoItemController)}/>
                             <p
                               className={todoItemController.getCompleted() ? "TitleCompleted" : "TitleNormal"}
                             >
